@@ -122,8 +122,13 @@ func convert2doubles(fileLeftChannel []byte)[]float64{
 	return fileDouble;
 	
 }
-func applyFFT(timeZoneData []float64)[]float64{
-	return nil;
+func applyFFT(fileDouble []float64)[]float64{
+	var fileImg []float64
+	fileImg=make([]float64,len(fileDouble))
+	
+	fft:=GetInstance(int(math.Pow(2,15)))
+	fft.Fft(fileDouble,fileImg)
+	return fileImg
 }
 func convert2frequencies(fileImg,fileDouble []float64)[]float64{
 	frequenciesData :=make([]float64,len(fileDouble)/2)
